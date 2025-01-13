@@ -6,7 +6,11 @@ utilizar pandas, numpy o scipy.
 """
 
 
+
+
+
 def pregunta_04():
+
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la
     cantidad de registros por cada mes, tal como se muestra a continuación.
@@ -26,3 +30,30 @@ def pregunta_04():
      ('12', 3)]
 
     """
+        
+    with open("files/input/data.csv", "r", encoding="utf-8") as archivo:
+        lineas = archivo.readlines()
+
+
+    registros_por_mes = {str(i).zfill(2): 0 for i in range(1, 13)}
+
+
+    for linea in lineas:
+        b = linea.strip().split("	")
+        fecha = b[2]
+
+
+        mes = fecha[5:7]
+
+
+        if mes in registros_por_mes:
+            registros_por_mes[mes] += 1
+
+
+    resultado = sorted(registros_por_mes.items())
+
+    return resultado
+
+if __name__ == "__main__":
+    print(pregunta_04())
+

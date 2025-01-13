@@ -7,6 +7,7 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_01():
+     
     """
     Retorne la suma de la segunda columna.
 
@@ -14,3 +15,16 @@ def pregunta_01():
     214
 
     """
+
+    with open("files/input/data.csv","r", encoding="utf-8") as a:
+        lineas = a.readlines()
+    suma = 0
+    for s in lineas:
+        b = s.strip().split("	")
+        suma += int(b[1])
+
+    return suma
+
+
+if __name__ == "__main__":
+    print(pregunta_01())

@@ -6,7 +6,9 @@ utilizar pandas, numpy o scipy.
 """
 
 
+
 def pregunta_03():
+
     """
     Retorne la suma de la columna 2 por cada letra de la primera columna como
     una lista de tuplas (letra, suma) ordendas alfabeticamente.
@@ -15,3 +17,32 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+
+    
+    with open("files/input/data.csv", "r", encoding="utf-8") as archivo:
+        lineas = archivo.readlines()
+
+
+
+    suma_dict = {}
+
+
+    for a in lineas:
+        b = a.strip().split("	")
+        letra = b[0]
+        valor = int(b[1])
+
+
+        if letra in suma_dict:
+            suma_dict[letra] += valor
+        else:
+            suma_dict[letra] = valor
+
+
+    resultado = sorted(suma_dict.items())
+
+    return resultado
+
+
+if __name__ == "__main__":
+    print(pregunta_03())

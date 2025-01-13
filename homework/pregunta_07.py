@@ -6,7 +6,10 @@ utilizar pandas, numpy o scipy.
 """
 
 
+
+
 def pregunta_07():
+
     """
     Retorne una lista de tuplas que asocien las columnas 0 y 1. Cada tupla
     contiene un valor posible de la columna 2 y una lista con todas las letras
@@ -25,3 +28,28 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+
+    with open("files/input/data.csv", "r", encoding="utf-8") as a:
+        lineas = a.readlines()
+
+
+    asociaciones = {}
+
+
+    for linea in lineas:
+        b = linea.strip().split("	")
+        valor_columna_2 = int(b[1])
+        letra_columna_1 = b[0]
+
+
+        if valor_columna_2 not in asociaciones:
+            asociaciones[valor_columna_2] = []
+        asociaciones[valor_columna_2].append(letra_columna_1)
+
+
+    resultado = sorted(asociaciones.items())
+
+    return resultado
+
+if __name__ == "__main__":
+    print(pregunta_07())

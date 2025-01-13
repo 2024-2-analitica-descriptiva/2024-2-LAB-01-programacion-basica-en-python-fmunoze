@@ -6,7 +6,10 @@ utilizar pandas, numpy o scipy.
 """
 
 
+
+
 def pregunta_09():
+
     """
     Retorne un diccionario que contenga la cantidad de registros en que
     aparece cada clave de la columna 5.
@@ -24,3 +27,27 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+
+    with open("files/input/data.csv", "r", encoding="utf-8") as a:
+        lineas = a.readlines()
+
+
+    conteo_claves = {}
+
+
+    for linea in lineas:
+        columnas = linea.strip().split("	")
+        columna_5 = columnas[4]
+
+
+        pares = columna_5.split(",")
+        for par in pares:
+            clave, _ = par.split(":")
+            if clave not in conteo_claves:
+                conteo_claves[clave] = 0
+            conteo_claves[clave] += 1
+
+    return conteo_claves
+
+if __name__ == "__main__":
+    print(pregunta_09())

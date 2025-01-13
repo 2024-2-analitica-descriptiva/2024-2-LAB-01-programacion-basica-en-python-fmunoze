@@ -6,7 +6,10 @@ utilizar pandas, numpy o scipy.
 """
 
 
+
+
 def pregunta_08():
+
     """
     Genere una lista de tuplas, donde el primer elemento de cada tupla
     contiene  el valor de la segunda columna; la segunda parte de la tupla
@@ -27,3 +30,29 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+
+    with open("files/input/data.csv", "r", encoding="utf-8") as a:
+        lineas = a.readlines()
+
+
+    asociaciones = {}
+
+
+    for linea in lineas:
+        b = linea.strip().split("	")
+        valor_columna_2 = int(b[1])
+        letra_columna_1 = b[0]
+
+
+        if valor_columna_2 not in asociaciones:
+            asociaciones[valor_columna_2] = set()
+        asociaciones[valor_columna_2].add(letra_columna_1)
+
+
+    resultado = [(valor, sorted(list(letras))) for valor, letras in sorted(asociaciones.items())]
+
+    return resultado
+
+
+if __name__ == "__main__":
+    print(pregunta_08())
